@@ -1,0 +1,41 @@
+jQuery(document).ready(function($) {
+    // Inicializa o calendário se o elemento existir
+    if ($('#eventos-calendario').length) {
+        loadEventosCalendario();
+    }
+    
+    function loadEventosCalendario() {
+        $.ajax({
+            url: eventosManager.ajaxurl,
+            type: 'POST',
+            data: {
+                action: 'get_eventos_calendario',
+                security: eventosManager.nonce
+            },
+            success: function(response) {
+                if (response.success) {
+                    initFullCalendar(response.data);
+                }
+            }
+        });
+    }
+    
+    function initFullCalendar(eventos) {
+        $('#eventos-calendario').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            defaultView: 'month',
+            editable: false,
+            events: eventos,
+            eventColor: '#3498db',
+            eventTextColor: '#ffffff',
+            timeFormat: 'H:mm',
+            eventRender: function(event, element) {
+                element.find('.fc-title').prepend('<span class="evento-tipo-badge">' + event.tipo + '</span> ');
+            }
+        });
+    }
+});
