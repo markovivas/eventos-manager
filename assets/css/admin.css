@@ -1,0 +1,57 @@
+/* No changes needed, but ensure this file exists as referenced in class-eventos-admin.php */
+.evento-metabox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px 0;
+}
+.meta-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.meta-field label {
+  font-weight: 600;
+}
+.meta-field input[type="date"],
+.meta-field input[type="time"],
+.meta-field input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-width: 300px;
+}
+#eventos-calendario-widget {
+    min-width: 280px;
+    min-height: 340px;
+    font-size: 15px;
+    max-height: 370px;
+    overflow: hidden;
+    border-radius: 18px; /* Mais arredondado */
+    box-shadow: 0 2px 16px rgba(44,62,80,0.10);
+    border: none;
+    background: #fff;
+}
+#eventos-calendario-widget .fc {
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(44,62,80,0.10);
+    background: #fff;
+    padding: 16px 8px 8px 8px;
+}
+#eventos-calendario-widget .fc-day-number {
+    border-radius: 50%;
+}
+#eventos-calendario-widget .fc-center h2 {
+    color: #3498db;
+}
+#eventos-calendario-widget .fc-today .fc-day-number {
+    background: #3498db;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.15);
+}
+#eventos-calendario-widget .fc-has-event .fc-day-number {
+    background: #217dbb;
+    color: #fff;
+    border: 2px solid #3498db;
+    box-shadow: 0 2px 8px rgba(52,152,219,0.15);
+}
