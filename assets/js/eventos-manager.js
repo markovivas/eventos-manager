@@ -7,6 +7,7 @@ jQuery(document).ready(function($) {
         const header = calendarWrapper.find('.em-mes-ano');
         const weekDaysContainer = calendarWrapper.find('.em-dias-semana');
         const daysGrid = calendarWrapper.find('.em-dias-grid');
+        const calendarView = calendarWrapper.data('view');
 
         // Nomes para internacionalização
         const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -96,13 +97,20 @@ jQuery(document).ready(function($) {
 
                 if (eventsByDate[date]) {
                     cell.addClass('has-event');
-                    const eventList = $('<div class="em-event-list"></div>');
-                    eventsByDate[date].forEach(event => {
-                        const eventEl = $(`<a href="${event.url}" class="em-event"></a>`);
-                        eventEl.text(event.title);
-                        eventList.append(eventEl);
-                    });
-                    cell.append(eventList);
+                    if (calendarView === 'full') {
+                        const eventList = $('<div class="em-event-list"></div>');
+                        eventsByDate[date].forEach(event => {
+                            const eventEl = $(`<a href="${event.url}" class="em-event"></a>`);
+                            eventEl.text(event.title);
+                            eventList.append(eventEl);
+                        });
+                        cell.append(eventList);
+                    } else if (calendarView === 'widget') {
+                        // Para o widget, torna o dia clicável, levando ao primeiro evento do dia.
+                        const eventUrl = eventsByDate[date][0].url;
+                        const daySpan = cell.find('span');
+                        daySpan.wrap(`<a href="${eventUrl}"></a>`);
+                    }
                 }
             });
         }

@@ -152,6 +152,23 @@
     text-align: center;
 }
 
+/* Estilo para o calendário do widget indicar um evento com cor de fundo */
+.em-calendario-wrapper[data-view="widget"] .em-dia-celula.has-event {
+    background-color: #e9f5ff; /* Um azul claro para indicar evento */
+}
+
+.em-calendario-wrapper[data-view="widget"] .em-dia-celula.has-event a {
+    text-decoration: none;
+    color: inherit; /* Mantém a cor do número do dia */
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.em-calendario-wrapper[data-view="widget"] .em-dia-celula.has-event:hover {
+    background-color: #d0eaff; /* Cor mais forte no hover */
+}
+
 .em-event-list {
     width: 100%;
     margin-top: 5px;
